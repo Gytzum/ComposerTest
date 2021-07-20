@@ -1,0 +1,17 @@
+{
+    "name": "gytis/composer-test",
+    "authors": [
+        {
+            "name": "Gytzum",
+            "email": "gytzum@gmail.com"
+        }
+    ],
+    "require": {
+        "doctrine/orm": "^2.9",
+        "symfony/cache": "^5.3"
+    },
+    "autoload": {
+        "files": ["src/Product.php"]
+    }
+
+}

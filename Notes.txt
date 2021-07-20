@@ -1,0 +1,59 @@
+
+// 1 STEP 
+    php ../composer.phar init
+
+//(SUPILDOME INFO)- turi atsirasti composer.json 
+
+//2 STEP instaliuoti bibliotekas su require komanda
+
+    php ../composer.phar require doctrine/orm
+    
+    //turi atsirasti vendor folder
+
+// 3 STEP
+    create bootstrap.php in root folder (database configuration parameters)
+    create cli-config.php   (by default)
+    <?php
+        require_once "bootstrap.php";
+        return \Doctrine\ORM\Tools\Console\ConsoleRunner::createHelperSet($entityManager);
+
+    create /src folder
+    create db scheme if you dont have one
+
+// 4 STEP START CREATE TABLES IN SRC FOLDER
+    //ADD CONFIG AUTOLOAD IN composer.json    Product is table name
+     "autoload": {
+        "files": ["src/Product.php"]  
+    }
+
+    php ../composer.phar dump-autoload (reikia paleisti po kiekvieno composer package instaliavimo ir išinstaliavimo)
+
+//EXECUTE THIS LINE TO UPDATE DATABASE 
+    vendor\bin\doctrine orm:schema-tool:update --force --dump-sql 	 (for cmd)/windows
+    vendor/bin/doctrine orm:schema-tool:update --force --dump-sql (gitbash)/mac/linux
+
+//IF DOESN'T WORK AND ERROR IS:  PHP Fatal error:  Uncaught RuntimeException: Setup tool cannot configure caches without doctrine/cache 1.11
+//USE THIS LINE EVEN IF CACHE SETTINGS IS NULL
+    php ../composer.phar require symfony/cache
+
+// 5 STEP ADD RECORDS INTO DATABASE
+
+    create file with name for example: create-product.php
+    //ADD RECORD COMMAND
+        php create-product.php Shoes   (shoes for name, id autoincrement)
+
+//EXTRA INFO 
+    * Check if you can find composer file plus it shows some commands for composer
+        php ../composer.phar -V 
+
+    *Install composer https://getcomposer.org/download/ 
+
+    *Free libraries https://packagist.org/   (doctrine/orm    etc.)
+
+    Getting started and project setup :
+        https://www.doctrine-project.org/projects/doctrine-orm/en/2.7/tutorials/getting-started.html#project-setup 
+
+
+    Usefull commands:
+        php ../composer.phar dump-autoload
+        vendor/bin/doctrine orm:schema-tool:update --force --dump-sql (gitbash)/mac/linux
